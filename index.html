@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <title>CRM Journey Map</title>
+  <style>
+    body { font-family: Arial; background:#f5f6fa; margin:0; padding:20px; }
+    h1 { text-align:center; }
+
+    .grid {
+      display:flex;
+      justify-content:space-around;
+      margin-top:30px;
+    }
+
+    .btn {
+      background:#0072CE;
+      color:white;
+      padding:20px;
+      border-radius:10px;
+      cursor:pointer;
+      width:180px;
+      text-align:center;
+    }
+
+    .btn:hover {
+      background:#005fa3;
+    }
+
+    .hidden { display:none; }
+
+    .back {
+      margin-top:20px;
+      cursor:pointer;
+      color:#0072CE;
+    }
+
+    img {
+      width:100%;
+      max-width:1000px;
+      display:block;
+      margin:20px auto;
+      border-radius:10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>CRM Cross-Sell Journeys</h1>
+
+<!-- Layer 1 -->
+<div id="home" class="grid">
+  <div class="btn" onclick="show('travel')">Travel Journey</div>
+  <div class="btn" onclick="show('home')">Home Journey</div>
+  <div class="btn" onclick="show('life')">Life Journey</div>
+  <div class="btn" onclick="show('retention')">Retention Journey</div>
+  <div class="btn" onclick="show('aia')">ex-AIA Journey</div>
+</div>
+
+<!-- Layer 2 -->
+<div id="detail" class="hidden">
+  <div class="back" onclick="back()">← Back</div>
+  <img id="img">
+</div>
+
+<script>
+function show(journey) {
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('detail').style.display = 'block';
+  document.getElementById('img').src = journey + '.jpg';
+}
+
+function back() {
+  document.getElementById('home').style.display = 'flex';
+  document.getElementById('detail').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
+``
