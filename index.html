@@ -1,81 +1,282 @@
 <!doctype html>
 <html>
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CRM Journey Map</title>
+
   <style>
-    body { font-family: Arial; background:#f5f6fa; margin:0; padding:20px; }
-    h1 { text-align:center; }
-
-    .grid {
-      display:flex;
-      justify-content:space-around;
-      margin-top:30px;
+    :root{
+      --bg:#f5f6fa;
+      --card:#ffffff;
+      --text:#0b1324;
+      --muted:#5b6b86;
+      --brand:#0072CE;
+      --brand2:#005fa3;
+      --border:#e6e9f2;
+      --shadow: 0 10px 25px rgba(11, 19, 36, 0.08);
     }
 
-    .btn {
-      background:#0072CE;
-      color:white;
-      padding:20px;
-      border-radius:10px;
-      cursor:pointer;
-      width:180px;
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 24px;
+      color: var(--text);
+    }
+
+    .container{
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header{
       text-align:center;
+      margin-bottom: 18px;
     }
 
-    .btn:hover {
-      background:#005fa3;
+    h1 {
+      margin: 6px 0 8px;
+      font-size: 26px;
+      letter-spacing: .2px;
     }
 
+    .subtitle{
+      margin: 0 auto;
+      max-width: 820px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    /* Layer 1 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(160px, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 1100px){
+      .grid{ grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+    }
+    @media (max-width: 560px){
+      .grid{ grid-template-columns: 1fr; }
+      body{ padding: 16px; }
+    }
+
+    .cardBtn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 14px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(11,19,36,0.04);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 140px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cardBtn::before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height:6px;
+      background: linear-gradient(90deg, var(--brand), #6aa9ff);
+      opacity: .9;
+    }
+
+    .cardBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: rgba(0,114,206,.35);
+    }
+
+    .row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-top: 6px;
+    }
+
+    .icon{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: rgba(0,114,206,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 18px;
+    }
+
+    .title{
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .desc{
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+
+    .pill{
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: max-content;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 11px;
+      color: var(--muted);
+      background: #fbfcff;
+    }
+
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: var(--brand);
+      display:inline-block;
+    }
+
+    /* Layer 2 */
     .hidden { display:none; }
 
     .back {
-      margin-top:20px;
-      cursor:pointer;
-      color:#0072CE;
+      margin-top: 6px;
+      cursor: pointer;
+      color: var(--brand);
+      font-weight: 700;
+      display: inline-flex;
+      align-items:center;
+      gap: 6px;
+    }
+    .back:hover{ color: var(--brand2); }
+
+    .detailWrap{
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 2px 10px rgba(11,19,36,0.04);
     }
 
     img {
-      width:100%;
-      max-width:1000px;
-      display:block;
-      margin:20px auto;
-      border-radius:10px;
+      width: 100%;
+      max-width: 1000px;
+      display: block;
+      margin: 10px auto 0;
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
   </style>
 </head>
 
 <body>
+  <div class="container">
 
-<h1>CRM Cross-Sell Journeys</h1>
+    <div class="header">
+      <h1>CRM Cross-Sell Journeys</h1>
+      <p class="subtitle">
+        Select a journey to view the full CRM flow (Layer 2). This overview helps showcase all cross-sell initiatives that are live or planned across major customer entry points.
+      </p>
+    </div>
 
-<!-- Layer 1 -->
-<div id="home" class="grid">
-  <div class="btn" onclick="show('travel')">Travel Journey</div>
-  <div class="btn" onclick="show('home')">Home Journey</div>
-  <div class="btn" onclick="show('life')">Life Journey</div>
-  <div class="btn" onclick="show('retention')">Retention Journey</div>
-  <div class="btn" onclick="show('aia')">ex-AIA Journey</div>
-</div>
+    <!-- Layer 1 -->
+    <div id="home" class="grid">
+      <div class="cardBtn" onclick="show('travel')">
+        <div class="row">
+          <div class="icon">✈️</div>
+          <div>
+            <div class="title">Travel Journey</div>
+            <div class="desc">Starts with travel purchase → upsell annual plan & post-trip cross-sell.</div>
+          </div>
+        </div>
+        <div class="pill"><span class="dot"></span>Click to open journey</div>
+      </div>
 
-<!-- Layer 2 -->
-<div id="detail" class="hidden">
-  <div class="back" onclick="back()">← Back</div>
-  <img id="img">
-</div>
+      <div class="cardBtn" onclick="show('home')">
+        <div class="row">
+          <div class="icon">🏠</div>
+          <div>
+            <div class="title">Home Journey</div>
+            <div class="desc">Starts with home purchase → bundle protection & adjacent covers.</div>
+          </div>
+        </div>
+        <div class="pill"><span class="dot"></span>Click to open journey</div>
+      </div>
 
-<script>
-function show(journey) {
-  document.getElementById('home').style.display = 'none';
-  document.getElementById('detail').style.display = 'block';
-  document.getElementById('img').src = journey + '.jpg';
-}
+      <div class="cardBtn" onclick="show('life')">
+        <div class="row">
+          <div class="icon">🧬</div>
+          <div>
+            <div class="title">Life Journey</div>
+            <div class="desc">Starts with life purchase → connect to GI cross-sell opportunities.</div>
+          </div>
+        </div>
+        <div class="pill"><span class="dot"></span>Click to open journey</div>
+      </div>
 
-function back() {
-  document.getElementById('home').style.display = 'flex';
-  document.getElementById('detail').style.display = 'none';
-}
-</script>
+      <div class="cardBtn" onclick="show('retention')">
+        <div class="row">
+          <div class="icon">🔁</div>
+          <div>
+            <div class="title">Retention Journey</div>
+            <div class="desc">Starts with renewal → improve retention & trade-up / multi-policy.</div>
+          </div>
+        </div>
+        <div class="pill"><span class="dot"></span>Click to open journey</div>
+      </div>
+
+      <div class="cardBtn" onclick="show('aia')">
+        <div class="row">
+          <div class="icon">🎯</div>
+          <div>
+            <div class="title">ex-AIA Retarget Journey</div>
+            <div class="desc">Starts with competitor audience → retarget into GI acquisition flows.</div>
+          </div>
+        </div>
+        <div class="pill"><span class="dot"></span>Click to open journey</div>
+      </div>
+    </div>
+
+    <!-- Layer 2 -->
+    <div id="detail" class="hidden">
+      <div class="back" onclick="back()">← Back to all journeys</div>
+      <div class="detailWrap">
+        <img id="img" alt="Journey diagram">
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function show(journey) {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('detail').style.display = 'block';
+      document.getElementById('img').src = journey + '.jpg';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function back() {
+      document.getElementById('home').style.display = 'grid';
+      document.getElementById('detail').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 
 </body>
 </html>
-``
