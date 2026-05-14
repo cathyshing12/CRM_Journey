@@ -241,11 +241,11 @@
         <div class="pill"><span class="dot"></span>Click to open journey</div>
       </div>
 
-      <div class="cardBtn" onclick="show('aia')">
+      <div class="cardBtn" onclick="show('ozcp')">
         <div class="row">
           <div class="icon">🎯</div>
           <div>
-            <div class="title">ex-AIA Retarget Journey</div>
+            <div class="title">OZCP Journey</div>
             <div class="desc">Starts with competitor audience → retarget into GI acquisition flows.</div>
           </div>
         </div>
@@ -253,15 +253,20 @@
       </div>
     </div>
 
-    <!-- Layer 2 -->
-    <div id="detail" class="hidden">
-      <div class="back" onclick="back()">← Back to all journeys</div>
-      <div class="detailWrap">
-        <img id="img" alt="Journey diagram">
-      </div>
-    </div>
+<!-- Layer 2 -->
+<div id="detail" class="hidden">
+  <div class="back" onclick="back()">← Back to all journeys</div>
 
+  <!-- NEW: headline -->
+  <h2 id="pageTitle" style="margin:14px 0 6px; font-size:20px;">Journey</h2>
+  <div id="pageSubtitle" style="margin:0 0 10px; color:#5b6b86; font-size:12px;">
+    Click “Back” to view all journeys.
   </div>
+
+  <div class="detailWrap">
+    <img id="img" alt="Journey diagram">
+  </div>
+</div>
 
   <script>
     function show(journey) {
