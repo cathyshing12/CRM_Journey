@@ -268,20 +268,33 @@
   </div>
 </div>
 
-  <script>
-    function show(journey) {
-      document.getElementById('home').style.display = 'none';
-      document.getElementById('detail').style.display = 'block';
-      document.getElementById('img').src = journey + '.jpg';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
 
-    function back() {
-      document.getElementById('home').style.display = 'grid';
-      document.getElementById('detail').style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
+<script>
+const titles = {
+  travel: "Travel Journey",
+  home: "Home Journey",
+  life: "Life Journey",
+  retention: "Retention Journey",
+  ozcp: "OZCP Journey"
+};
+
+function show(journey) {
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('detail').style.display = 'block';
+
+  // NEW: set headline text
+  document.getElementById('pageTitle').textContent = titles[journey];
+
+  // show image
+  document.getElementById('img').src = journey + '.jpg';
+}
+
+function back() {
+  document.getElementById('home').style.display = 'flex';
+  document.getElementById('detail').style.display = 'none';
+}
+</script>
+
 
 </body>
 </html>
